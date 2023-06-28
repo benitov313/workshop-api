@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataBasesEnum } from './enum/data-bases.enum';
 import { MechanicalModule } from './mechanicals/mechanical.module';
 import entities from './persistence';
+import { AppointmentModule } from './appointment/appointment.module';
+
 
 @Module({
   imports: [
@@ -23,6 +25,7 @@ import entities from './persistence';
       inject: [ConfigService],
     }),
     MechanicalModule,
+    AppointmentModule,
   ],
   controllers: [],
   providers: [],
