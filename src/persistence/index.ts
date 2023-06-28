@@ -1,6 +1,6 @@
-import { User } from './user.entity';
+import { Mechanical } from './mechanical.entity';
 
-const entities = [User];
+const entities = [Mechanical];
 
-export { User };
+export { Mechanical };
 export default entities;

@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataBasesEnum } from './enum/data-bases.enum';
+import { MechanicalModule } from './mechanicals/mechanical.module';
+import entities from './persistence';
 import { AppointmentModule } from './appointment/appointment.module';
 
 
@@ -18,12 +19,12 @@ import { AppointmentModule } from './appointment/appointment.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: ['./dist/persistence/entities/*.ts'],
+        entities: entities,
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
-    UsersModule,
+    MechanicalModule,
     AppointmentModule,
   ],
   controllers: [],
