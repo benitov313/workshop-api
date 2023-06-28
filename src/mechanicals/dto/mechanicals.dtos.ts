@@ -1,15 +1,15 @@
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateMechanicalDto {
   @IsNotEmpty()
   @MinLength(3)
-  username: string;
+  fullName: string;
 
   @IsNotEmpty()
-  @MinLength(8)
-  password: string;
+  @MinLength(5)
+  phone: string;
 
   @IsNotEmpty()
-  @IsEmail()
-  email: string;
+  @MinLength(5)
+  dni: string;
 }

@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class Mechanical {
   @PrimaryGeneratedColumn({
     type: 'bigint',
     name: 'user_id',
@@ -9,21 +9,23 @@ export class User {
   id: number;
 
   @Column({
+    name: 'full_name',
     nullable: false,
     default: '',
   })
-  username: string;
+  fullName: string;
 
   @Column({
-    name: 'email_address',
+    name: 'phone_address',
     nullable: false,
     default: '',
   })
-  email: string;
+  phone: string;
 
   @Column({
+    name: 'dni',
     nullable: false,
     default: '',
   })
-  password: string;
+  dni: string;
 }
