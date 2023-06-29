@@ -26,16 +26,16 @@ export class CreateAppointmentDto {
     @IsOptional()
     departureDate: Date;
     
-    @IsEnum(
-        [
-            StatusEnum.PENDING,
-            StatusEnum.CANCELLED,
-            StatusEnum.DONE
-        ],
-        {
-          each: true,
-          message: 'status entered is not available.',
-        },
-      )
-    status: StatusEnum;
+    // @IsEnum(
+    //     [
+    //         StatusEnum.PENDING,
+    //         StatusEnum.CANCELLED,
+    //         StatusEnum.DONE
+    //     ],
+    //     {
+    //       each: true,
+    //       message: 'status entered is not available.',
+    //     },
+    //   )
+    // status: StatusEnum;
 }

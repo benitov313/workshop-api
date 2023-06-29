@@ -1,6 +1,8 @@
+import { Appointment } from './appointment.entity';
 import { Mechanical } from './mechanical.entity';
 
-const entities = [Mechanical];
 
-export { Mechanical };
+const entities = [Mechanical, Appointment];
+
+export { Mechanical, Appointment };
 export default entities;
