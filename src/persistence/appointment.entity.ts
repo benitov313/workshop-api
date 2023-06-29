@@ -1,5 +1,6 @@
 import { StatusEnum } from "src/enum/appointment-status.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Mechanical } from "./mechanical.entity";
 
 @Entity()
 export class Appointment {
@@ -46,9 +47,14 @@ export class Appointment {
     departureDate: Date;
 
     @Column({
-        name: 'status'
+        name: 'status',
+        default: StatusEnum.PENDING
     })
     status: StatusEnum;
+
+    @JoinColumn({ name: 'mechanic_id' })
+    @ManyToMany(() => Mechanical, (mechanic) => mechanic.appointment)
+    mechanic: Mechanical;
 }
 
 

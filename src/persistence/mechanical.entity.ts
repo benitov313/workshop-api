@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Appointment } from './appointment.entity';
 
 @Entity()
 export class Mechanical {
@@ -28,4 +29,7 @@ export class Mechanical {
     default: '',
   })
   dni: string;
+
+  @OneToMany(() => Appointment, (appointment) => appointment.mechanic)
+  appointment: Appointment[];
 }
