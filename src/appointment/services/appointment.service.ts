@@ -4,26 +4,30 @@ import { UpdateAppointmentDto } from '../dto/update-appointment.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Appointment } from 'src/persistence/appointment.entity';
 import { Repository } from 'typeorm';
-import { AppointmentController } from '../controllers/appointment.controller';
+import { MicroService } from 'src/micro-service/services/microservice.service';
+import { ResponseAppointmentDto } from '../dto/response-appoiment.dto';
+import { UserResponse } from 'src/micro-service/dto/user.response.dto';
 
 @Injectable()
 export class AppointmentService {
-  remove(arg0: number) {
-    throw new Error('Method not implemented.');
-  }
-  update(arg0: number, updateAppointmentDto: UpdateAppointmentDto) {
-    throw new Error('Method not implemented.');
-  }
-  findOne(arg0: number) {
-    throw new Error('Method not implemented.');
-  }
+  // remove(arg0: number) {
+  //   throw new Error('Method not implemented.');
+  // }
+  // update(arg0: number, updateAppointmentDto: UpdateAppointmentDto) {
+  //   throw new Error('Method not implemented.');
+  // }
+  // findOne(arg0: number) {
+  //   throw new Error('Method not implemented.');
+  // }
 
   constructor(
     @InjectRepository(Appointment)
-    private readonly appoinmentRepository: Repository<Appointment>
-    ) {}
+    private readonly appoinmentRepository: Repository<Appointment>,
+    private microService: MicroService,
+  ) {}
   create(createAppointmentDto: CreateAppointmentDto) {
-    const newAppointment = this.appoinmentRepository.create(createAppointmentDto);
+    const newAppointment =
+      this.appoinmentRepository.create(createAppointmentDto);
     return this.appoinmentRepository.save(newAppointment);
   }
 
@@ -31,18 +35,21 @@ export class AppointmentService {
     return this.appoinmentRepository.find();
   }
 
-  findUserById(id: string): Promise<Appointment> {
-    const found = this.appoinmentRepository.findOneBy({ id });
+  async findAppointmentById(id: string) {
+    const found = await this.appoinmentRepository.findOneBy({ id });
     if (!found) {
       throw new NotFoundException(`Appointment with ID "${id}" not found`);
     }
     return found;
   }
 
-   async updateAppointment(id: string, data: UpdateAppointmentDto): Promise<Appointment> {
-    const appointment: Appointment =  await this.findUserById(id);
+  async updateAppointment(
+    id: string,
+    data: UpdateAppointmentDto,
+  ): Promise<Appointment> {
+    const appointment: Appointment = await this.findAppointmentById(id);
     this.appoinmentRepository.merge(appointment, data);
-    return  await this.appoinmentRepository.save(appointment);
+    return await this.appoinmentRepository.save(appointment);
   }
 
   async deleteAppointment(id: string): Promise<void> {
@@ -50,5 +57,18 @@ export class AppointmentService {
     if (result.affected == 0) {
       throw new NotFoundException(`Appointment with ID "${id}" not found`);
     }
+  }
+
+  async getAppointmentResponse(id: string) {
+    const appointment: Appointment = await this.findAppointmentById(id);
+    const user: UserResponse = await this.microService.getUserById(
+      appointment.userId,
+    );
+    // const car = this.microService.getCarByiD(appointment.carId);
+    const response: ResponseAppointmentDto = {
+      ...appointment,
+      user: user,
+    };
+    return response;
   }
 }
