@@ -1,8 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { AppointmentService } from '../services/appointment.service';
 import { CreateAppointmentDto } from '../dto/create-appointment.dto';
 import { UpdateAppointmentDto } from '../dto/update-appointment.dto';
-
 
 @Controller('appointment')
 export class AppointmentController {
@@ -20,11 +27,14 @@ export class AppointmentController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.appointmentService.findUserById(id);
+    return this.appointmentService.getAppointmentResponse(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAppointmentDto: UpdateAppointmentDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateAppointmentDto: UpdateAppointmentDto,
+  ) {
     return this.appointmentService.updateAppointment(id, updateAppointmentDto);
   }
 
