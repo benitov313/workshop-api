@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  ParseUUIDPipe,
   Post,
   UsePipes,
   ValidationPipe,
@@ -16,8 +17,8 @@ export class MechanicalsController {
   constructor(private readonly mechanicalService: MechanicalsService) {}
 
   @Get(':id')
-  findUsersById(@Param('id', ParseIntPipe) id: number) {
-    return this.mechanicalService.findUsersById(id);
+  findUsersById(@Param('id', ParseUUIDPipe) id: string) {
+    return this.mechanicalService.findMechanicById(id);
   }
 
   @Get()

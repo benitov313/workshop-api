@@ -16,8 +16,8 @@ export class MechanicalsService {
     return this.mechanicalRepository.save(newUser);
   }
 
-  findUsersById(id: number) {
-    return this.mechanicalRepository.findOne({ where: { id } });
+  async findMechanicById(mechanicId: string) {
+    return await this.mechanicalRepository.findOneBy({ mechanicId });
   }
 
   findAll() {

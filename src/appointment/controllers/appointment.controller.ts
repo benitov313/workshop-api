@@ -43,4 +43,12 @@ export class AppointmentController {
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.appointmentService.deleteAppointment(id);
   }
+
+  @Patch('/:id/mechanic')
+  setMechanic(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body('mechanicId', ParseUUIDPipe) mechanicId: string,
+  ) {
+    return this.appointmentService.setMechanic(id, mechanicId);
+  }
 }

@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { Mechanical } from './mechanical.entity';
 
-@Entity()
+@Entity('appointment')
 export class Appointment {
   @PrimaryGeneratedColumn('uuid', {
     name: 'appointment_id',
@@ -30,12 +30,9 @@ export class Appointment {
   carId: string;
 
   @Column({
-    name: 'mechanical_id',
-  })
-  mechanicalId: string;
-
-  @Column({
     name: 'details',
+    nullable: true,
+    default: '',
   })
   details: string;
 
@@ -49,6 +46,7 @@ export class Appointment {
 
   @Column({
     name: 'departure_date',
+    nullable: true,
   })
   departureDate: Date;
 
@@ -58,7 +56,7 @@ export class Appointment {
   })
   status: StatusEnum;
 
-  @JoinColumn({ name: 'mechanic_id' })
-  @OneToMany(() => Mechanical, (mechanic) => mechanic.appointment)
-  mechanic: Mechanical[];
+  @JoinColumn({ name: 'mechanic' })
+  @ManyToOne(() => Mechanical, (mechanic) => mechanic.appointment)
+  mechanic: Mechanical;
 }

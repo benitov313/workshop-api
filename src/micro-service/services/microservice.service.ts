@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { UserResponse } from '../dto/user.response.dto';
+import { CarResponse } from '../dto/car.response.dto';
 
 @Injectable()
 export class MicroService {
@@ -12,7 +13,10 @@ export class MicroService {
     return data;
   }
 
-  getCarByiD(id: number) {
-    return `This action returns a #${id} http`;
+  async getCarById(id: string): Promise<CarResponse> {
+    const { data } = await this.httpService.axiosRef.get<CarResponse>(
+      `http://localhost:3500/users/${id}`,
+    );
+    return data;
   }
 }
