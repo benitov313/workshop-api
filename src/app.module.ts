@@ -26,7 +26,7 @@ import { MicroServiceModule } from './micro-service/micro-service.module';
     }),
     MechanicalModule,
     AppointmentModule,
-    // MicroServiceModule,
+    MicroServiceModule,
   ],
 
   controllers: [],

@@ -7,7 +7,7 @@ export class MicroService {
   constructor(private httpService: HttpService) {}
   async getUserById(id: string): Promise<UserResponse> {
     const { data } = await this.httpService.axiosRef.get<UserResponse>(
-      `localhost:4000/users/${id}`,
+      `http://localhost:4000/users/${id}`,
     );
     return data;
   }

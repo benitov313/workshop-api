@@ -1,0 +1,34 @@
+version: "3.0"
+
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nestpostgres
+      POSTGRES_DB: nesties
+    volumes:
+      - ./conf/postgres/initdb/:/docker-entrypoint-initdb.d/
+    networks:
+      - interdb
+  pgAdmin:
+    image: "dpage/pgadmin4:latest"
+    ports:
+      - "15433:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@nest.com
+      PGADMIN_DEFAULT_PASSWORD: nestpostgres
+      PGADMIN_SERVER_JSON_FILE: /pgadmin4/conf/server.json
+    volumes:
+      - ./conf/pgadmin/:/pgadmin4/conf/
+    networks:
+      - interdb
+networks:
+  default:
+    name: nesties_default
+    driver: bridge
+  interdb:
+    name: nesties_interdb
+    driver: bridge

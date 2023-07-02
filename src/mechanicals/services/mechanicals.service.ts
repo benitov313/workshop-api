@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataBasesEnum } from 'src/enum/data-bases.enum';
 import { CreateMechanicalDto } from 'src/mechanicals/dto/mechanicals.dtos';
 import { Mechanical } from 'src/persistence/mechanical.entity';
 import { Repository } from 'typeorm';

@@ -31,5 +31,5 @@ export class Mechanical {
   dni: string;
 
   @OneToMany(() => Appointment, (appointment) => appointment.mechanic)
-  appointment: Appointment[];
+  appointment: Appointment;
 }
