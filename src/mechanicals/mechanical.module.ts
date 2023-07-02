@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataBasesEnum } from 'src/enum/data-bases.enum';
-import { MechanicalsController } from './controllers/mechanicals/mechanicals.controller';
-import { MechanicalsService } from './services/mechanicals/mechanicals.service';
 import { Mechanical } from './../persistence/mechanical.entity';
-import { MicroServiceModule } from 'src/micro-service/micro-service.module';
+import { MechanicalsController } from './controllers/mechanicals.controller';
+import { MechanicalsService } from './services/mechanicals.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Mechanical])],

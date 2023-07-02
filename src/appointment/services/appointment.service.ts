@@ -10,16 +10,6 @@ import { UserResponse } from 'src/micro-service/dto/user.response.dto';
 
 @Injectable()
 export class AppointmentService {
-  // remove(arg0: number) {
-  //   throw new Error('Method not implemented.');
-  // }
-  // update(arg0: number, updateAppointmentDto: UpdateAppointmentDto) {
-  //   throw new Error('Method not implemented.');
-  // }
-  // findOne(arg0: number) {
-  //   throw new Error('Method not implemented.');
-  // }
-
   constructor(
     @InjectRepository(Appointment)
     private readonly appoinmentRepository: Repository<Appointment>,
@@ -43,11 +33,8 @@ export class AppointmentService {
     return found;
   }
 
-  async updateAppointment(
-    id: string,
-    data: UpdateAppointmentDto,
-  ): Promise<Appointment> {
-    const appointment: Appointment = await this.findAppointmentById(id);
+  async updateAppointment(id: string, data: UpdateAppointmentDto) {
+    const appointment = await this.findAppointmentById(id);
     this.appoinmentRepository.merge(appointment, data);
     return await this.appoinmentRepository.save(appointment);
   }
