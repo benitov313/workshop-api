@@ -6,24 +6,12 @@ import { MechanicalModule } from './mechanicals/mechanical.module';
 import entities from './persistence';
 import { AppointmentModule } from './appointment/appointment.module';
 import { MicroServiceModule } from './micro-service/micro-service.module';
+import { dataSourceOptions } from 'db/data-source';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: DataBasesEnum.POSTGRES,
-        host: configService.get('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_NAME'),
-        entities: entities,
-        synchronize: true,
-      }),
-      inject: [ConfigService],
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     MechanicalModule,
     AppointmentModule,
     MicroServiceModule,
