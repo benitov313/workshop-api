@@ -1,13 +1,12 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Appointment } from './appointment.entity';
 
-@Entity()
+@Entity('mechanical')
 export class Mechanical {
-  @PrimaryGeneratedColumn({
-    type: 'bigint',
-    name: 'user_id',
+  @PrimaryGeneratedColumn('uuid', {
+    name: 'mechanic_id',
   })
-  id: number;
+  mechanicId: string;
 
   @Column({
     name: 'full_name',
@@ -31,5 +30,5 @@ export class Mechanical {
   dni: string;
 
   @OneToMany(() => Appointment, (appointment) => appointment.mechanic)
-  appointment: Appointment;
+  appointment: Appointment[];
 }

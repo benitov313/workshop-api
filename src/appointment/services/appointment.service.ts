@@ -7,6 +7,8 @@ import { Repository } from 'typeorm';
 import { MicroService } from 'src/micro-service/services/microservice.service';
 import { ResponseAppointmentDto } from '../dto/response-appoiment.dto';
 import { UserResponse } from 'src/micro-service/dto/user.response.dto';
+import { MechanicalsService } from 'src/mechanicals/services/mechanicals.service';
+import { CarResponse } from 'src/micro-service/dto/car.response.dto';
 
 @Injectable()
 export class AppointmentService {
@@ -14,8 +16,9 @@ export class AppointmentService {
     @InjectRepository(Appointment)
     private readonly appoinmentRepository: Repository<Appointment>,
     private microService: MicroService,
+    private mechanicalsService: MechanicalsService,
   ) {}
-  create(createAppointmentDto: CreateAppointmentDto) {
+  async create(createAppointmentDto: CreateAppointmentDto) {
     const newAppointment =
       this.appoinmentRepository.create(createAppointmentDto);
     return this.appoinmentRepository.save(newAppointment);
@@ -51,11 +54,23 @@ export class AppointmentService {
     const user: UserResponse = await this.microService.getUserById(
       appointment.userId,
     );
-    // const car = this.microService.getCarByiD(appointment.carId);
+    // const car: CarResponse = await this.microService.getCarByiD(
+    //   appointment.carId,
+    // );
+    // const car = this.microService.getCarById(appointment.carId);
     const response: ResponseAppointmentDto = {
       ...appointment,
       user: user,
+      // car: car,
     };
     return response;
+  }
+
+  async setMechanic(appointmentId: string, mechanicId: string) {
+    const mechanic = await this.mechanicalsService.findMechanicById(mechanicId);
+    const appointment = await this.findAppointmentById(appointmentId);
+    appointment.mechanic = mechanic;
+    this.appoinmentRepository.merge(appointment);
+    return this.appoinmentRepository.save(appointment);
   }
 }
