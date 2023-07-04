@@ -2,13 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAppointmentDto } from '../dto/create-appointment.dto';
 import { UpdateAppointmentDto } from '../dto/update-appointment.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Appointment } from 'src/persistence/appointment.entity';
+import { Appointment } from '../../persistence/appointment.entity';
 import { Repository } from 'typeorm';
-import { MicroService } from 'src/micro-service/services/microservice.service';
+import { MicroService } from '../../micro-service/services/microservice.service';
 import { ResponseAppointmentDto } from '../dto/response-appoiment.dto';
-import { UserResponse } from 'src/micro-service/dto/user.response.dto';
-import { MechanicalsService } from 'src/mechanicals/services/mechanicals.service';
-import { CarResponse } from 'src/micro-service/dto/car.response.dto';
+import { UserResponse } from '../../micro-service/dto/user.response.dto';
+import { MechanicalsService } from '../../mechanicals/services/mechanicals.service';
+import { CarResponse } from '../../micro-service/dto/car.response.dto';
 
 @Injectable()
 export class AppointmentService {
