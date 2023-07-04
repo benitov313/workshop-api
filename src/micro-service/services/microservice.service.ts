@@ -6,17 +6,16 @@ import { CarResponse } from '../dto/car.response.dto';
 @Injectable()
 export class MicroService {
   constructor(private httpService: HttpService) {}
+
   async getUserById(id: string): Promise<UserResponse> {
-    const { data } = await this.httpService.axiosRef.get<UserResponse>(
-      `http://localhost:4000/users/${id}`,
-    );
+    const URL = `http://users-service:3000/users/${id}`;
+    const { data } = await this.httpService.axiosRef.get<UserResponse>(URL);
     return data;
   }
 
-  async getCarById(id: string): Promise<CarResponse> {
-    const { data } = await this.httpService.axiosRef.get<CarResponse>(
-      `http://localhost:3500/users/${id}`,
-    );
+  async getCarById(id: number): Promise<CarResponse> {
+    const URL = `http://car-service:8080/cars/${id}`;
+    const { data } = await this.httpService.axiosRef.get<CarResponse>(URL);
     return data;
   }
 }

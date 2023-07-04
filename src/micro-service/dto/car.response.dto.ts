@@ -1,4 +1,4 @@
-export class CarResponse {
+export class Car {
   id: number;
 
   brand: string;
@@ -6,4 +6,10 @@ export class CarResponse {
   model: string;
 
   color: string;
+}
+
+export class CarResponse {
+  status: number;
+  error: boolean;
+  data: CarResponse;
 }

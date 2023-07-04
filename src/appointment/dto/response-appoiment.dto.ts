@@ -5,7 +5,7 @@ import { Mechanical } from 'src/persistence';
 export class ResponseAppointmentDto {
   userId: string;
 
-  carId: string;
+  carId: number;
 
   details: string;
 
@@ -13,7 +13,7 @@ export class ResponseAppointmentDto {
 
   user: UserResponse;
 
-  // car: CarResponse;
+  car: CarResponse;
 
   mechanic: Mechanical;
 }

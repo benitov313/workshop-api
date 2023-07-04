@@ -9,7 +9,7 @@ export class UpdateAppointmentDto {
 
   @IsString({ message: 'carId must be a string.' })
   @IsOptional()
-  carId: string;
+  carId: number;
 
   @IsString({ message: 'detail must be a string.' })
   @IsOptional()

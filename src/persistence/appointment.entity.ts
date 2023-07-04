@@ -1,4 +1,4 @@
-import { StatusEnum } from 'src/enum/appointment-status.enum';
+import { StatusEnum } from '../enum/appointment-status.enum';
 import {
   Column,
   Entity,
@@ -27,7 +27,7 @@ export class Appointment {
     name: 'car_id',
     nullable: false,
   })
-  carId: string;
+  carId: number;
 
   @Column({
     name: 'details',

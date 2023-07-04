@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateMechanicalDto } from 'src/mechanicals/dto/mechanicals.dtos';
-import { Mechanical } from 'src/persistence/mechanical.entity';
+import { CreateMechanicalDto } from '../../mechanicals/dto/mechanicals.dtos';
+import { Mechanical } from '../../persistence/mechanical.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
