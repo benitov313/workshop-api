@@ -1,4 +1,4 @@
-import { StatusEnum } from 'src/enum/appointment-status.enum';
+import { StatusEnum } from '../enum/appointment-status.enum';
 import {
   Column,
   Entity,
