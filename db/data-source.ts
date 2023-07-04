@@ -3,8 +3,8 @@ import { DataBasesEnum } from 'src/enum/data-bases.enum';
 
 export const dataSourceOptions: DataSourceOptions = {
   type: DataBasesEnum.POSTGRES,
-  host: 'localhost',
-  port: 5433,
+  host: 'workshop-db',
+  port: 5432,
   username: 'postgres',
   password: 'nestpostgres',
   database: 'nesties',

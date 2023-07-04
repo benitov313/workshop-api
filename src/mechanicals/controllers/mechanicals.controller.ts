@@ -9,7 +9,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CreateMechanicalDto } from 'src/mechanicals/dto/mechanicals.dtos';
+import { CreateMechanicalDto } from '../../mechanicals/dto/mechanicals.dtos';
 import { MechanicalsService } from '../services/mechanicals.service';
 
 @Controller('mechanicals')
