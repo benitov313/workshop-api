@@ -51,17 +51,16 @@ export class AppointmentService {
 
   async getAppointmentResponse(id: string) {
     const appointment: Appointment = await this.findAppointmentById(id);
+    const car: CarResponse = await this.microService.getCarById(
+      appointment.carId,
+    );
     const user: UserResponse = await this.microService.getUserById(
       appointment.userId,
     );
-    // const car: CarResponse = await this.microService.getCarByiD(
-    //   appointment.carId,
-    // );
-    // const car = this.microService.getCarById(appointment.carId);
     const response: ResponseAppointmentDto = {
       ...appointment,
       user: user,
-      // car: car,
+      car: car,
     };
     return response;
   }

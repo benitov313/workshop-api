@@ -27,7 +27,7 @@ export class Appointment {
     name: 'car_id',
     nullable: false,
   })
-  carId: string;
+  carId: number;
 
   @Column({
     name: 'details',
