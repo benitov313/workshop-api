@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { Mechanical } from 'src/persistence';
+import { Mechanical } from '../../persistence';
 
 export class CreateAppointmentDto {
   @IsString({ message: 'userId be a string.' })
@@ -8,7 +8,7 @@ export class CreateAppointmentDto {
 
   @IsString({ message: 'carId must be a string.' })
   @IsNotEmpty({ message: 'Please provide a carId' })
-  carId: string;
+  carId: number;
 
   @IsString({ message: 'detail must be a string.' })
   @IsOptional()
