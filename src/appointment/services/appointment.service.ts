@@ -24,7 +24,7 @@ export class AppointmentService {
     return this.appoinmentRepository.save(newAppointment);
   }
 
-  findAll() {
+  findAll(): Promise<Appointment[]> {
     return this.appoinmentRepository.find();
   }
 

@@ -1,11 +1,14 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Appointment } from './appointment.entity';
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
 
 @Entity('mechanical')
+@ObjectType()
 export class Mechanical {
   @PrimaryGeneratedColumn('uuid', {
     name: 'mechanic_id',
   })
+  @Field()
   mechanicId: string;
 
   @Column({
@@ -13,6 +16,7 @@ export class Mechanical {
     nullable: false,
     default: '',
   })
+  @Field()
   fullName: string;
 
   @Column({
@@ -20,6 +24,7 @@ export class Mechanical {
     nullable: false,
     default: '',
   })
+  @Field()
   phone: string;
 
   @Column({
@@ -27,6 +32,7 @@ export class Mechanical {
     nullable: false,
     default: '',
   })
+  @Field()
   dni: string;
 
   @OneToMany(() => Appointment, (appointment) => appointment.mechanic)

@@ -14,5 +14,6 @@ import { MechanicalModule } from 'src/mechanicals/mechanical.module';
   ],
   controllers: [AppointmentController],
   providers: [AppointmentService],
+  exports: [AppointmentService],
 })
 export class AppointmentModule {}
